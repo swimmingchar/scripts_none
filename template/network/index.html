@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>cms OPS</title>
+  <link rel="stylesheet" href="../../static/css/layui.css">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header header header-demo">
+        <ul class="layui-nav" lay-filter="">
+            <li class="layui-nav-item"><a href="../index.html"> CMS 后台管理 </a></li>
+            <li class="layui-nav-item layui-this"><a href="javascript:;"> 网络功能</a></li>
+        </ul>      
+
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                Swimming
+                </a>
+                <dl class="layui-nav-child">
+                <dd><a href="javascript:;">基本资料</a></dd>
+                <dd><a href="javascript:;">安全设置</a></dd>
+                <dd><a href="javascript:;">退了</a></dd>
+                </dl>
+            </li>
+        </ul>
+    <!-- //注意：导航 依赖 element 模块，否则无法进行功能性操作 -->
+    </div>
+    <!-- =========================下栏============================ -->
+    <div class="layui-tab layui-tab-brief" lay-filter="demoTitle">
+    <!-- <div class="layui-body layui-tab-content site-demo site-demo-body"> -->
+    <ul class="layui-tab-title site-demo-title">
+            <li class="layui-this">连通性检测</li>
+            <li class=“”>获取路由</li>
+        </ul>
+        <div class="layui-tab-item layui-show">
+            <div class="layui-main">
+                <blockquote class="layui-elem-quote">每个IP使用空格或者英文逗号隔开！连通性可以多对多，路由表只能一对一。</blockquote>
+                   
+   
+                <form class="layui-form" id="sjl-form" >
+                    <div class="layui-form-item layui-form-text layui-col-space10">
+                    <!-- <label class="layui-form-label">源IP：</label> -->
+                        <div class="layui-input-block layui-col-md3 " >
+                            <textarea placeholder="输入源IP：" class="layui-textarea"></textarea>
+                        </div>
+                        <div class="layui-form-item layui-col-md1">
+                                <button class="layui-btn layui-btn-lg" lay-submit="" lay-filter="formDemoPane">开始</button>
+                            </div>
+                        <div class="layui-input-block layui-col-md3 " >
+                            <textarea placeholder="输入目的IP：" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+
+                </form>
+                <fieldset class="layui-elem-field">
+                    <legend>Output:</legend>
+                    <div class="layui-field-box">
+                        Ping .........
+                    </div>
+                </fieldset>
+        </div>
+    </div>
+
+<script src="../../static/layui.js"></script>
+    <script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+    var element = layui.element;
+    });
+</script>
+</div>
+</body>
+</html>

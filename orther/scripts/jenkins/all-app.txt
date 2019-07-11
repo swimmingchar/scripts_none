@@ -1,0 +1,4 @@
+account-core,redis_other,10.10.203.1;10.10.203.3,https://123.124.17.124:8443/repos/account/account/trunk/account-core,廉栋,pay_account,
+account-portal,redis_other,10.10.203.5;10.10.203.7,https://123.124.17.124:8443/repos/account/account/trunk/account-portal,廉栋,pay_account,
+recon-core,redis_other,10.10.203.101;10.10.203.103,https://123.124.17.124:8443/repos/account/recon/trunk/recon-core,廉栋,pay_settle,
+recon-portal,redis_other,10.10.203.105;10.10.203.107,https://123.124.17.124:8443/repos/account/recon/trunk/recon-portal,廉栋,pay_settle,

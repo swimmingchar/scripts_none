@@ -1,0 +1,55 @@
+# 默认时间设置
+defaults: &defaults
+  # 线路探测时间间隔,acktime是时间间隔，通过uptime和downtime来约定故障恢复时间
+  acktime: 3
+  downtime: 10
+  uptime: 600
+  checkpoint:
+  - 10.10.222.16
+  - 10.10.222.18
+  - 10.10.222.136
+  - 10.10.222.137
+  - 10.10.222.166
+  - 10.10.222.167    
+# 线路告警邮件
+altermail:
+  - shiwm@xxxx.com
+  - om@xxxxx.com
+
+# 可用线路标识
+LineNo:
+  Master:
+    - 11
+    - 10
+  Slave:
+    - 21
+
+# 主机房配置
+Master:
+  BJ01:
+    singe: epcc
+    ip: 10.3.3.31
+    port: 8003
+    <<: *defaults
+    downtime: 1
+    uptime: 60
+  SZ02:
+    singe: epcc
+    ip: 10.3.1.31
+    port: 8004
+    <<: *defaults
+    uptime: 20
+# 备机房配置
+Slave:
+  BJ02:
+    singe: epcc
+    ip: 10.10.1.41
+    port: 8005
+    <<: *defaults
+  SH01:
+    singe: epcc
+    ip: 10.3.3.42
+    port: 8006
+    <<: *defaults
+    uptime: 10
+    downtime: 1

@@ -1,0 +1,28 @@
+<ul class="layui-nav" lay-filter="">
+  <li class="layui-nav-item"><a href="#"> C M S </a></li>
+  <li class="layui-nav-item layui-this"><a href="network/index.html">网络功能</a></li>
+  <li class="layui-nav-item"><a href="">功能2</a></li>
+  <li class="layui-nav-item">
+    <a href="javascript:;">功能3</a>
+    <dl class="layui-nav-child"> <!-- 二级菜单 -->
+      <dd><a href="">主机房</a></dd>
+      <dd><a href="">备机房</a></dd>
+    </dl>
+  </li>
+  <li class="layui-nav-item">
+    <a href=""><img src="http://t.cn/RCzsdCq" class="layui-nav-img">我</a>
+    <dl class="layui-nav-child">
+        <dd><a href="javascript:;">修改信息</a></dd>
+        <dd><a href="javascript:;">安全管理</a></dd>
+        <dd><a href="javascript:;">退了</a></dd>
+    </dl>
+  </li>
+</ul>         
+<!-- //注意：导航 依赖 element 模块，否则无法进行功能性操作 -->
+<script src="../static/layui.js"></script>
+<script>
+  //JavaScript代码区域
+  layui.use('element', function(){
+  var element = layui.element;
+  });
+</script>

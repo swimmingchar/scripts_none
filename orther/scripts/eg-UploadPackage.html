@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="referrer" content="always">
+    <script src="https://csdnimg.cn/public/common/libs/jquery/jquery-1.9.1.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://csdnimg.cn/public/static/css/avatar.css">
+
+    <script src="https://csdnimg.cn//rabbit/exposure-click/main-1.0.5.js"></script>
+    <script type="text/javascript" src="https://csdnimg.cn/pubfooter/js/tracking-1.0.2.js" charset="utf-8"></script>
+    <script type="text/javascript">
+        // Traffic Stats of the entire Web site By baidu
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?6bcd52f51e9b3dce32bec4a3997715ac";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+        // Traffic Stats of the entire Web site By baidu end
+    </script>
+    <meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#" />
+    <meta name="shenma-site-verification" content="5a59773ab8077d4a62bf469ab966a63b_1497598848">
+    <title>404</title>
+    <link href="https://csdnimg.cn/public/favicon.ico" rel="SHORTCUT ICON">
+    <link rel="stylesheet" href="https://csdnimg.cn/release/phoenix/develop/error.css">
+</head>
+<body>
+
+<script type="text/javascript" id="m-toolbar-tpl-scriptId" prod="blog" src="https://csdnimg.cn/public/common/toolbar/js/m_toolbar-1.0.1.js"></script>
+<link rel="stylesheet" href="https://csdnimg.cn/public/common/toolbar/content_toolbar_css/m_toolbar-1.0.1.css">
+<script type="text/javascript" src="https://csdnimg.cn/public/common/toolbar/js/m_iconfont.js"></script>
+
+<div id="main" class="clearfix">
+    <div class="point floatL">
+        <div class="expression">
+            o(╥﹏╥)o
+        </div>
+        <div class="error_text">
+            404
+        </div>
+        <div class="text">
+            页面找不到了
+        </div>
+        <div class="return">
+            <a href="https://www.csdn.net">返回首页</a>
+        </div>
+    </div>
+    <div class="feed floatR">
+        <div class="text">
+            推荐阅读：
+        </div>
+        <div class="recommend_list">
+        </div>
+    </div>
+    <div class="a_d_pop">
+        <script type="text/javascript" src="//cee1.iteye.com/pkccslzgs.js"></script>
+        <div class="persion_article"></div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    $(function() {
+        function getYtAd(id) {
+            var new_element = document.createElement("script");
+            new_element.setAttribute("async", "async");
+            new_element.setAttribute("charset", "utf-8");
+            new_element.setAttribute("data-notify", "inforFlowMulti_notify");
+            new_element.setAttribute("src", "https://shared.ydstatic.com/js/yatdk/3.0.0/stream.js");
+            new_element.setAttribute("data-id", "6cb24153a03289ff3597c7aab4b69fe9");
+
+            new_element.setAttribute("data-insert-nodes", "yd_a_d_feed_" + id);
+            new_element.setAttribute("data-hide-ad-label", "0");
+
+            new_element.setAttribute("data-pos", "inline");
+            new_element.setAttribute("data-img-Style", "float:right;width:120px;");
+            new_element.setAttribute("data-des-Style", "width:700px;font-size:14px;font-family: 'PingFang SC', 'Microsoft YaHei', SimHei, Arial, SimSun;");
+            new_element.setAttribute("data-tit-Style", "font-size:20px;font-weight:bold;margin-bottom:10px;font-family: 'PingFang SC', 'Microsoft YaHei', SimHei, Arial, SimSun;");
+            new_element.setAttribute("data-div-Style", "width:100%;padding:10px;");
+            document.body.appendChild(new_element);
+        }
+
+        var feed_a_d_num = 1,
+            add_a_d_num = 0,
+            is_load = false;
+
+        function feed_add_yd() {
+
+            var $recommend_children = $('.recommend_list').children('div');
+            if ($recommend_children.length > feed_a_d_num) {
+                for (; feed_a_d_num < $recommend_children.length; feed_a_d_num += 6) {
+                    $recommend_children = $('.recommend_list').children('div');
+                    $($recommend_children[feed_a_d_num]).after('<div id="yd_a_d_feed_' + feed_a_d_num + '" class="yd_a_d_feed_cla item"></div>')
+                    getYtAd(feed_a_d_num);
+                    add_a_d_num++;
+                }
+                $recommend_children = null;
+            }
+            return false;
+        }
+        var loadanAnimation = "<div class='Recommend_loadanAnimation'><img src='https://csdnimg.cn/release/phoenix/images/feedLoading.gif'></div>"
+        var shown_offset = 0;
+        function getHtml(data){
+            var text = '';
+            return text = '<div class="item csdn-tracking-statistics" data-mod="popu_624" data-poputype="feed"  data-feed-show="false"  data-dsm="post">'+
+                '<a href="'+data.url+'" target="_self">'+
+                '<div class="title"><span>'+data.title+'</span></div>'+
+                '<div class="user">'+
+                '<div class="avatar">'+
+                '<img src="'+data.avatar+'" alt="'+data.user_name+'">'+
+                '</div>'+
+                '<span class="user_name">'+data.user_name+'</span>'+
+                '<span class="read_num">阅读数：'+data.views+'</span>'+
+                '</div>'+
+                '</a>'+
+                '</div>';
+        }
+        function getRelateListData() {
+            var noMoreRecommend = '<div class="clearfix nomore_box" style="text-align:center">没有更多内容了，<a href="https://www.csdn.net/">去首页看看吧</a></div>';
+            if (!$('.Recommend_loadanAnimation')[0]) {
+                $('.recommend_list').append(loadanAnimation);
+            }
+            $.ajax({
+                url: 'https://blog.csdn.net/api/articles?type=more&category=home&shown_offset='+shown_offset+'&first_view=false',
+                beforeSend: function() {
+                },
+                success: function(data) {
+                    var text = '';
+                    $('.Recommend_loadanAnimation').remove();
+                    if (data.articles.length > 0) {
+                        for (var i = 0; i < data.articles.length; i++) {
+                            text += getHtml(data.articles[i]);
+                        }
+                        shown_offset = data.shown_offset
+                        $('.recommend_list').append(text);
+                        is_load = false;
+                        feed_add_yd()
+                    } else {
+                        $('.recommend_list').append(noMoreRecommend);
+                        return
+                    }
+                },
+                error: function () {
+                }
+            })
+        }
+        //初始化加载第一页数据
+        getRelateListData();
+
+        var winH = $(window).height(); //页面可视区域高度
+
+        var scrollHandler = function() {
+            var pageH = $(document.body).height();
+            var scrollT = $(window).scrollTop(); //滚动条top
+            var aa = (pageH - winH - scrollT) / winH;
+            if (aa < 0.02 && !is_load) {
+                is_load = true;
+                getRelateListData();
+            }
+        }
+        //函数节流
+        var throttleV2 = function(fn, delay, mustRunDelay) {
+            var timer = null;
+            var t_start;
+            return function() {
+                var context = this,
+                    args = arguments,
+                    t_curr = +new Date();
+                clearTimeout(timer);
+                if (!t_start) {
+                    t_start = t_curr;
+                }
+                if (t_curr - t_start >= mustRunDelay) {
+                    fn.apply(context, args);
+                    t_start = t_curr;
+                } else {
+                    timer = setTimeout(function() {
+                        fn.apply(context, args);
+                    }, delay);
+                }
+            };
+        };
+        //定义鼠标滚动事件
+        $(window).scroll(throttleV2(scrollHandler, 200, 400));
+
+        // 悬浮广告
+    });
+    $(function(){
+        function is_show_ad_pop(){
+            var Wwidth = $(window).width(),
+                feedleft = $('.feed').offset().left,
+                WTop = $(window).scrollTop(),
+                is_show_num = 500,
+                $a_d_pop = $('.a_d_pop');
+            if(WTop > is_show_num){
+                $a_d_pop.addClass('a_d_pop_show')
+            }else{
+                $a_d_pop.removeClass('a_d_pop_show')
+            }
+        }
+        is_show_ad_pop()
+        $(window).scroll(is_show_ad_pop)
+    });
+</script>
+<script src="https://csdnimg.cn/public/common/gotop/js/goTop-v1.0.min.js?v20180326115028"></script>
+<script>
+    GoTop({
+        right: 16,
+        bottom: 80,
+        zindex: 99,
+        isMobile: true
+    })
+</script>
+<script src='https://csdnimg.cn/pubfooter/js/publib_footer-1.0.3.js?v201804111810' data-isfootertrack="false"></script>
+
+</html>

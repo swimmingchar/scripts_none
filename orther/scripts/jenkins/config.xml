@@ -1,0 +1,112 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>project</name>
+          <description></description>
+          <defaultValue>app_name</defaultValue>
+          <trim>false</trim>
+        </hudson.model.StringParameterDefinition>
+        <hudson.model.ChoiceParameterDefinition>
+          <name>host</name>
+          <description></description>
+          <choices class="java.util.Arrays$ArrayList">
+            <a class="string-array">
+              ip1
+              ip2
+            </a>
+          </choices>
+        </hudson.model.ChoiceParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
+  <scm class="hudson.scm.SubversionSCM" plugin="subversion@2.12.1">
+    <locations>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote>svn_path</remote>
+        <credentialsId>c198ab7e-21e7-4e05-96bf-b3fb7301bf9b</credentialsId>
+        <local>.</local>
+        <depthOption>infinity</depthOption>
+        <ignoreExternalsOption>true</ignoreExternalsOption>
+        <cancelProcessOnExternalsFail>true</cancelProcessOnExternalsFail>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote>https://123.124.17.124:8443/repos/profile/proc/bin</remote>
+        <credentialsId>c198ab7e-21e7-4e05-96bf-b3fb7301bf9b</credentialsId>
+        <local>bin</local>
+        <depthOption>infinity</depthOption>
+        <ignoreExternalsOption>true</ignoreExternalsOption>
+        <cancelProcessOnExternalsFail>true</cancelProcessOnExternalsFail>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+      <hudson.scm.SubversionSCM_-ModuleLocation>
+        <remote>https://123.124.17.124:8443/repos/profile/proc/common</remote>
+        <credentialsId>c198ab7e-21e7-4e05-96bf-b3fb7301bf9b</credentialsId>
+        <local>common</local>
+        <depthOption>infinity</depthOption>
+        <ignoreExternalsOption>true</ignoreExternalsOption>
+        <cancelProcessOnExternalsFail>true</cancelProcessOnExternalsFail>
+      </hudson.scm.SubversionSCM_-ModuleLocation>
+
+      auth_redis
+      auth_ftp
+      auth_db
+
+    </locations>
+    <excludedRegions></excludedRegions>
+    <includedRegions></includedRegions>
+    <excludedUsers></excludedUsers>
+    <excludedRevprop></excludedRevprop>
+    <excludedCommitMessages></excludedCommitMessages>
+    <workspaceUpdater class="hudson.scm.subversion.UpdateUpdater"/>
+    <ignoreDirPropChanges>false</ignoreDirPropChanges>
+    <filterChangelog>false</filterChangelog>
+    <quietOperation>true</quietOperation>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Maven>
+      <targets>clean package -Pproc -Dmaven.test.skip=true -U -X</targets>
+      <mavenName>maven</mavenName>
+      <usePrivateRepository>false</usePrivateRepository>
+      <settings class="jenkins.mvn.DefaultSettingsProvider"/>
+      <globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+      <injectBuildVariables>false</injectBuildVariables>
+    </hudson.tasks.Maven>
+    <hudson.tasks.Shell>
+      <command>sed -i &quot;s/@project@/${project}/g&quot; bin/spring-boot.sh
+find . -name &quot;*.svn&quot; | xargs rm -rf
+[ -d config ] || mkdir config &amp;&amp; echo &quot;auth:&quot; &gt; config/application-auth.yml
+find auth -type f -name &quot;*.dat&quot; | xargs cat &gt;&gt; config/application-auth.yml
+ssh -o stricthostkeychecking=no tomcat@${host} &quot;mkdir -p ~/release/${project}_${SVN_REVISION_1}&quot;
+chmod 755 bin/spring-boot.sh
+if [ ! -f &quot;common/${project}/application-auth.yml&quot; ];then
+   echo &quot;common/${project}/application-auth.yml not exist&quot;
+else
+   cat common/${project}/application-auth.yml &gt;&gt; config/application-auth.yml
+fi
+
+if [ ! -f &quot;common/${project}/application-addr.yml&quot; ];then
+   echo &quot;common/${project}/application-addr.yml not exist&quot;
+else
+   cp common/${project}/application-addr.yml config/
+fi
+scp -rp bin/spring-boot.sh config target/${project}.jar  tomcat@${host}:~/release/${project}_${SVN_REVISION_1}
+scp -rp common/*.yml tomcat@${host}:~/release/${project}_${SVN_REVISION_1}/config/
+ssh tomcat@${host} &quot;rm -f ~/app&quot;
+ssh tomcat@${host} &quot;/bin/ln -s /home/tomcat/release/${project}_${SVN_REVISION_1} /home/tomcat/app&quot;
+ssh tomcat@${host} &quot;cd /home/tomcat/app;./spring-boot.sh restart&quot;</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers/>
+  <buildWrappers/>
+</project>

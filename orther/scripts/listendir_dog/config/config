@@ -1,0 +1,9 @@
+[watch_dog]
+src_path = ./inotyfywait.exe
+log_path = D:/log/watchdog/
+[rsync_conf]
+sbin = d:\Program Files (x86)\cwRsync\bin\rsync
+src = /cygdrive/d/file/
+user = test
+dst_ip = 10.10.8.12,10.10.22.20
+pwd = c:\rsync.password

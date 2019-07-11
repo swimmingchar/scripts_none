@@ -1,0 +1,9 @@
+[watch_dog]
+monitor_path = C:\Import\django\
+[rsync_conf]
+sbin = d:\Program Files (x86)\cwRsync\
+src = /cygdrive/d/file/
+user = test
+dst_ip = 10.10.8.12,10.10.22.20
+deamon = hzybsc
+pwd = c:\rsync.password

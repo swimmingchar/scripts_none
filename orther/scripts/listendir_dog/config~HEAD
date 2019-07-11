@@ -1,0 +1,9 @@
+[watch_dog]
+monitor_path = C:\work\
+[rsync_conf]
+sbin = C:\Program Files (x86)\cwRsync\bin\
+src = /cygdrive/c/work/
+user = test
+dst_ip = 172.10.1.125
+deamon = test/
+pwd = /cygdrive/c/password.txt
